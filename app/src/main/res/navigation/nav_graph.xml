@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph">
+
+
+    <fragment
+        android:id="@+id/login_fragment"
+        android:name="edu.iesam.loginexam1eval.feature.login.Presentation.LoginFragment"
+        tools:layout="@layout/login_fragment">
+
+        <action
+            android:id="@+id/action_from_login_to_atlas"
+            app:destination="@id/atlas_fragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/atlas_fragment"
+        android:name="edu.iesam.loginexam1eval.feature.login.Presentation.AtlasFragment"
+        tools:layout="@layout/atlas_fragment">
+
+    </fragment>
+</navigation>
