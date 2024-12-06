@@ -4,6 +4,14 @@
     android:orientation="vertical"
     android:layout_height="match_parent">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Login"
+        android:textSize="32dp"
+        />
+
     <EditText
         android:id="@+id/username"
         android:layout_margin="16dp"
@@ -31,5 +39,14 @@
         android:text="Aceptar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/sing_in"
+        android:layout_margin="16dp"
+        android:text="Registrarse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
 
 </LinearLayout>
