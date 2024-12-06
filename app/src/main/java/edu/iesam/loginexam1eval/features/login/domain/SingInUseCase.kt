@@ -5,10 +5,12 @@ import org.koin.core.annotation.Single
 @Single
 class SingInUseCase(val userRepository: UserRepository) {
 
-    suspend operator fun invoke(userName: String, password: String): Boolean{
-        val user = userRepository.findById(userName).let {
-            userRepository.save(User(userName, password))
+    operator fun invoke(userName: String, password: String): Boolean {
+        val existingUser = userRepository.findById(userName)
+        if (existingUser != null) {
+            return false
         }
+        userRepository.save(User(userName, password))
         return true
     }
 }

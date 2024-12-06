@@ -2,16 +2,20 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/main">
+    app:startDestination="@id/login">
 
     <fragment
-        android:id="@+id/main"
-        android:name="edu.iesam.loginexam1eval.features.login.presentation.MainScreenFragment"
-        android:label="MainScreen">
+        android:id="@+id/login"
+        android:name="edu.iesam.loginexam1eval.features.login.presentation.LoginFragment"
+        android:label="Login">
 
         <action
-            android:id="@+id/action_from_main_screen_from_sing_in"
-            app:destination="@+id/sing_in" />
+            android:id="@+id/action_from_login_to_sing_in"
+            app:destination="@+id/sing_in"/>
+
+        <action
+            android:id="@+id/action_from_login_to_welcome"
+            app:destination="@+id/welcome"/>
     </fragment>
 
     <fragment
@@ -20,8 +24,12 @@
         android:label="SingIn">
 
         <action
-            android:id="@+id/action_from_main_screen_from_sing_in"
+            android:id="@+id/action_from_sing_in_to_welcome"
             app:destination="@+id/welcome" />
+
+        <action
+            android:id="@+id/action_from_sing_in_to_login"
+            app:destination="@+id/login" />
     </fragment>
 
     <fragment

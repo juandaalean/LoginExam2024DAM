@@ -7,11 +7,11 @@ import org.koin.core.annotation.Single
 @Single
 class LoginDataRepository(private val xmlLocal: LoginXmlLocalDataSource): UserRepository {
 
-    override suspend fun findById(userName: String): User? {
+    override fun findById(userName: String): User? {
         return xmlLocal.findById(userName)
     }
 
-    override suspend fun save(user: User) {
+    override fun save(user: User) {
         return xmlLocal.save(user)
     }
 }

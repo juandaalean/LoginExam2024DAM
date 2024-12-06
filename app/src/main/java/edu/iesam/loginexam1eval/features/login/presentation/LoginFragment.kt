@@ -8,14 +8,14 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import edu.iesam.loginexam1eval.databinding.FragmentSingInBinding
+import edu.iesam.loginexam1eval.databinding.FragmentLoginBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class SingInFragment : Fragment() {
+class LoginFragment : Fragment() {
 
     private val viewModel: UserViewModel by viewModel()
 
-    private var _binding: FragmentSingInBinding? = null
+    private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -23,7 +23,7 @@ class SingInFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentSingInBinding.inflate(inflater, container, false)
+        _binding = FragmentLoginBinding.inflate(inflater, container, false)
         setupView()
         return binding.root
     }
@@ -32,35 +32,37 @@ class SingInFragment : Fragment() {
         binding.action.setOnClickListener {
             val userName = binding.username.text.toString()
             val password = binding.password.text.toString()
-            viewModel.singIn(userName, password)
+            viewModel.login(userName, password)
         }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupObserver()
+        navigateToSingIn()
     }
 
     private fun setupObserver() {
-        val userObserver = Observer<UserViewModel.UiState>{ uiState ->
+        val observer = Observer<UserViewModel.UiState> { uiState ->
             uiState.isSuccess?.let { isSuccess ->
-                if (isSuccess){
-                    Log.d("@JuanDev", "The user has been saved")
-                    navigateToLogin()
+                if (isSuccess) {
+                    Log.d("@JuanDev", "Login in...")
+                    navigateToWelcome()
                 } else {
-                    Log.d("@JuanDev", "The user already exists")
+                    Log.d("@JuanDev", "Your password or username are wrong, please try again.")
                 }
             }
-
         }
-        viewModel.uiState.observe(viewLifecycleOwner, userObserver)
+        viewModel.uiState.observe(viewLifecycleOwner, observer)
     }
 
-    private fun navigateToWelcome(){
-        findNavController().navigate(SingInFragmentDirections.actionFromSingInToWelcome())
+    private fun navigateToSingIn() {
+        binding.singIn.setOnClickListener {
+            findNavController().navigate(LoginFragmentDirections.actionFromLoginToSingIn())
+        }
     }
 
-    private fun navigateToLogin(){
-        findNavController().navigate(SingInFragmentDirections.actionFromSingInToLogin())
+    private fun navigateToWelcome() {
+        findNavController().navigate(LoginFragmentDirections.actionFromLoginToWelcome())
     }
 }
