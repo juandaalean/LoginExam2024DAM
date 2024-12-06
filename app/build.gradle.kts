@@ -29,6 +29,10 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -48,6 +52,9 @@ dependencies {
     implementation(project.dependencies.platform(libs.koin.bom))
     implementation(libs.koin.android)
     implementation(libs.koin.annotations)
+    implementation(libs.androidx.monitor)
+    implementation(libs.androidx.benchmark.common)
+    androidTestImplementation(libs.junit)
     ksp(libs.koin.ksp)
 
     //Librerías para testing

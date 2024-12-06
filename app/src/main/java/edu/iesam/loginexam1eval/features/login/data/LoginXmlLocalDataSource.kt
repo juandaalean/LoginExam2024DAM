@@ -3,7 +3,9 @@ package edu.iesam.loginexam1eval.features.login.data
 import android.content.Context
 import com.google.gson.Gson
 import edu.iesam.loginexam1eval.features.login.domain.User
+import org.koin.core.annotation.Single
 
+@Single
 class LoginXmlLocalDataSource (private val context: Context) {
 
     private val sharedPref = context.getSharedPreferences(
@@ -14,14 +16,14 @@ class LoginXmlLocalDataSource (private val context: Context) {
 
     fun save(user: User) {
         val editor = sharedPref.edit()
-        editor.putString(user.id, gson.toJson(user))
+        editor.putString(user.userName, gson.toJson(user))
         editor.apply()
     }
 
     fun saveAll(users: List<User>) {
         val editor = sharedPref.edit()
         users.forEach { user ->
-            editor.putString(user.id, gson.toJson(user))
+            editor.putString(user.userName, gson.toJson(user))
         }
         editor.apply()
     }
