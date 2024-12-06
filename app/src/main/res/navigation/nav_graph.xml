@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/main">
+
+    <fragment
+        android:id="@+id/main"
+        android:name="edu.iesam.loginexam1eval.features.login.presentation.MainScreenFragment"
+        android:label="MainScreen">
+
+        <action
+            android:id="@+id/action_from_main_screen_from_sing_in"
+            app:destination="@+id/sing_in" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/sing_in"
+        android:name="edu.iesam.loginexam1eval.features.login.presentation.SingInFragment"
+        android:label="SingIn">
+
+        <action
+            android:id="@+id/action_from_main_screen_from_sing_in"
+            app:destination="@+id/welcome" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/welcome"
+        android:name="edu.iesam.loginexam1eval.features.login.presentation.WelcomeFragment"
+        android:label="Welcome">
+
+    </fragment>
+</navigation>
