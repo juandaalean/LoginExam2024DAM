@@ -7,4 +7,5 @@ interface UserRepository {
     fun getReminderUser() : User?
     fun saveUserLogged(user: User)
     fun deleteRemindUser()
+    fun deleteUserById(userName: String)
 }

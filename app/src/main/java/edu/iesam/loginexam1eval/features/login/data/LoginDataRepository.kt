@@ -1,5 +1,7 @@
 package edu.iesam.loginexam1eval.features.login.data
 
+import edu.iesam.loginexam1eval.features.login.data.local.LoginXmlLocalDataSource
+import edu.iesam.loginexam1eval.features.login.data.local.UserRemindXmlLocalDataSource
 import edu.iesam.loginexam1eval.features.login.domain.User
 import edu.iesam.loginexam1eval.features.login.domain.UserRepository
 import org.koin.core.annotation.Single
@@ -28,5 +30,9 @@ class LoginDataRepository(
 
     override fun deleteRemindUser() {
          userRemindXmlLocalDataSource.deleteUser()
+    }
+
+    override fun deleteUserById(userName: String) {
+        xmlLocal.deleteById(userName)
     }
 }

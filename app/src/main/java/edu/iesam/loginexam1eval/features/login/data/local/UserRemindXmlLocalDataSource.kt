@@ -1,7 +1,6 @@
-package edu.iesam.loginexam1eval.features.login.data
+package edu.iesam.loginexam1eval.features.login.data.local
 
 import android.content.Context
-import android.content.SharedPreferences
 import com.google.gson.Gson
 import edu.iesam.loginexam1eval.features.login.domain.User
 import org.koin.core.annotation.Single

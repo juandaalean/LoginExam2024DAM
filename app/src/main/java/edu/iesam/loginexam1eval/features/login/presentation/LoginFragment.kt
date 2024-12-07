@@ -45,6 +45,7 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupObserver()
+        navigateToDeleteUser()
         navigateToSingIn()
         viewModel.getRemindUser()
     }
@@ -71,6 +72,12 @@ class LoginFragment : Fragment() {
     private fun navigateToSingIn() {
         binding.singIn.setOnClickListener {
             findNavController().navigate(LoginFragmentDirections.actionFromLoginToSingIn())
+        }
+    }
+
+    private fun navigateToDeleteUser() {
+        binding.deleteUser.setOnClickListener {
+            findNavController().navigate(LoginFragmentDirections.actionFromLoginToDeleteUser())
         }
     }
 

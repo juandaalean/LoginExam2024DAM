@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import edu.iesam.loginexam1eval.features.login.domain.DeleteRemindUserUseCase
+import edu.iesam.loginexam1eval.features.login.domain.DeleteUserUseCase
 import edu.iesam.loginexam1eval.features.login.domain.GetRemindUserUseCase
 import edu.iesam.loginexam1eval.features.login.domain.LoginUseCase
 import edu.iesam.loginexam1eval.features.login.domain.RememberUserUseCase
@@ -20,7 +21,8 @@ class UserViewModel(
     private val loginUseCase: LoginUseCase,
     private val rememberUserUseCase: RememberUserUseCase,
     private val getRemindUserUseCase: GetRemindUserUseCase,
-    private val deleteRemindUserUseCase: DeleteRemindUserUseCase
+    private val deleteRemindUserUseCase: DeleteRemindUserUseCase,
+    private val deleteUserUseCase: DeleteUserUseCase
 ) : ViewModel() {
 
     private var _uiState = MutableLiveData<UiState>()
@@ -46,15 +48,24 @@ class UserViewModel(
         }
     }
 
-    fun getRemindUser(){
+    fun deleteUser(userName: String, password: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            val response = deleteUserUseCase.invoke(userName, password)
+            _uiState.postValue(
+                UiState(isSuccess = response)
+            )
+        }
+    }
+
+    fun getRemindUser() {
         viewModelScope.launch(Dispatchers.IO) {
             val response = getRemindUserUseCase.invoke()
             _uiState.postValue(UiState(user = response))
         }
 
-        }
+    }
 
-    fun rememberUser(user: User){
+    fun rememberUser(user: User) {
         viewModelScope.launch(Dispatchers.IO) {
             rememberUserUseCase.invoke(user)
         }

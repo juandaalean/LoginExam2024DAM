@@ -1,4 +1,4 @@
-package edu.iesam.loginexam1eval.features.login.data
+package edu.iesam.loginexam1eval.features.login.data.local
 
 import android.content.Context
 import com.google.gson.Gson
