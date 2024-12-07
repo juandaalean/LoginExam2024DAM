@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/login">
+
+    <fragment
+        android:id="@+id/login"
+        android:name="edu.iesam.loginexam1eval.features.login.presentation.LoginFragment"
+        android:label="Login">
+
+        <action
+            android:id="@+id/action_from_login_to_sing_in"
+            app:destination="@+id/sing_in"/>
+
+        <action
+            android:id="@+id/action_from_login_to_welcome"
+            app:destination="@+id/welcome"/>
+
+        <action
+            android:id="@+id/action_from_login_to_delete_user"
+            app:destination="@+id/delete_user"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/sing_in"
+        android:name="edu.iesam.loginexam1eval.features.login.presentation.SingInFragment"
+        android:label="SingIn">
+
+        <action
+            android:id="@+id/action_from_sing_in_to_welcome"
+            app:destination="@+id/welcome" />
+
+        <action
+            android:id="@+id/action_from_sing_in_to_login"
+            app:destination="@+id/login" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/welcome"
+        android:name="edu.iesam.loginexam1eval.features.login.presentation.WelcomeFragment"
+        android:label="Welcome">
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/delete_user"
+        android:name="edu.iesam.loginexam1eval.features.login.presentation.DeleteUserFragment"
+        android:label="DeleteUser">
+
+        <action
+            android:id="@+id/action_from_delete_user_to_login"
+            app:destination="@id/login"/>
+    </fragment>
+</navigation>
