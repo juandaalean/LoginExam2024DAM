@@ -4,4 +4,7 @@ interface UserRepository {
 
     fun findById(userName: String): User?
     fun save(user: User)
+    fun getReminderUser() : User?
+    fun saveUserLogged(user: User)
+    fun deleteRemindUser()
 }

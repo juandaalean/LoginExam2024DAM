@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import edu.iesam.loginexam1eval.databinding.FragmentLoginBinding
+import edu.iesam.loginexam1eval.features.login.domain.User
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginFragment : Fragment() {
@@ -33,6 +34,11 @@ class LoginFragment : Fragment() {
             val userName = binding.username.text.toString()
             val password = binding.password.text.toString()
             viewModel.login(userName, password)
+            if (binding.reminder.isChecked) {
+                viewModel.rememberUser(User(userName, password))
+            } else {
+                viewModel.deleteRemindUser()
+            }
         }
     }
 
@@ -40,13 +46,19 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupObserver()
         navigateToSingIn()
+        viewModel.getRemindUser()
     }
 
     private fun setupObserver() {
         val observer = Observer<UserViewModel.UiState> { uiState ->
+            uiState.user?.let { user ->
+                binding.username.setText(user.userName)
+                binding.password.setText(user.password)
+            }
+            binding.reminder.isChecked = true
             uiState.isSuccess?.let { isSuccess ->
                 if (isSuccess) {
-                    Log.d("@JuanDev", "Login in...")
+                    Log.d("@JuanDev", "Login...")
                     navigateToWelcome()
                 } else {
                     Log.d("@JuanDev", "Your password or username are wrong, please try again.")
